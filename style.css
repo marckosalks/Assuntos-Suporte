@@ -60,5 +60,8 @@ ul{
   list-style: none;
   li {
     list-style-type: none;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 20px;
   }
 }
