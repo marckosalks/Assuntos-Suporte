@@ -25,18 +25,6 @@ h1{
   width: 100%;
 }
 
-.caixa-input button{
-  padding: 1.15rem;
-  border-radius: 10px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transform: scale(1);
-  transition: all 0.3s;
-  background-color: #01C801;
-  color: white;
-}
-
 input{
   outline: none;
   width: 50%;
@@ -46,22 +34,51 @@ input{
   border-radius: 10px;
 }
 
-.galeria-assuntos ul{
+input::placeholder{
+  color: #AEAEAE;
+  font-size: 17px;
+}
+
+.galeria-assuntos{
   padding-top: 2.5rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
+}
+
+.caixa-input button{
+  
+  padding: 1.15rem;
+  width: 10%;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.3s;
+  background-color: #01C801;
+  color: white;
+}
+
+.galeria-assuntos ul{
+  display: grid;
+  grid-template-columns: 180px 180px 180px 180px;
+  gap: 2rem
 }
 
 ul{
   list-style: none;
   li {
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     list-style-type: none;
-    padding: 50px;
+    height: 140px;
+    width: 170px;
+    padding: 10px;
+
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 40px;
   }
 }
