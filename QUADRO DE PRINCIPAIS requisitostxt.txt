@@ -1,0 +1,22 @@
+QUADRO DE PRINCIPAIS ASSUNTOS DO SUPORTE
+
+IDEIA PRINCIPAL: Trazer a luz assuntos mais visto do suporte no dia a dia.
+
+Nesse sistema teremos a possibilidade de registrar os principais assuntos que vemos no dia a dia,
+e o sistema conta a quantidade de vezes que determinado assunto foi mencionado e ranqueia como os
+assuntos mais vistos no dia.
+
+quando clicarmos em determinado assunto expande como banner dentro do site escurecendo o fundo da
+pagina, exibindo um titulo e uma descrição sobre aquele assunto em especifico euma possível melhoria. 
+
+vai ser um crud logo precisa ter essas funções:
+
+Criar um novo assunto
+
+Editar esse assunto
+
+Deletar assunto quando não mais necessário
+
+Regras de negocio:
+
+Não permitir mais que 8 assuntos
