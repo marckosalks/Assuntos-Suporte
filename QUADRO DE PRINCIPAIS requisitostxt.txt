@@ -11,7 +11,7 @@ pagina, exibindo um titulo e uma descrição sobre aquele assunto em especifico 
 
 vai ser um crud logo precisa ter essas funções:
 
-Criar um novo assunto
+Criar um novo assunto *
 
 Editar esse assunto
 
@@ -20,3 +20,6 @@ Deletar assunto quando não mais necessário
 Regras de negocio:
 
 Não permitir mais que 8 assuntos
+
+Quando o mesmo assunto aparecer precisa comparar o texto atual com anterior, assim 
+contabilizando que foi falado mais de uma vez 
