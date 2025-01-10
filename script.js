@@ -16,15 +16,26 @@ button.addEventListener('click', function criarAssunto() {
 });
 
 function criarElemento() {
+   
     const galeria = document.querySelector('.galeria-assuntos');
     galeria.innerHTML = ''; 
 
+    //crio a ul
     const ul = document.createElement('ul');
     galeria.appendChild(ul);
 
+    // percorro meio array e crio a li
     assuntos.forEach((valor) => {
         const newLi = document.createElement('li');
         newLi.textContent = valor;
         ul.appendChild(newLi);
+
+        // adiciona um evento de click ao elemento criado
+        newLi.addEventListener('click',testando);
     });
+}
+
+
+function testando(){
+    console.log('teste')
 }
