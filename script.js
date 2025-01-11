@@ -8,80 +8,74 @@ const modalOverlay = document.getElementById("modal-overlay");
 let assuntos = [];
 let assuntoAtual;
 
-button.addEventListener('click', criarAssunto);
-closeButton.addEventListener('click', fecharModal);
-modalOverlay.addEventListener('click', fecharModal);
-modalTextarea.addEventListener('input', atualizarDescricao);
+// Adiciona um evento de click ao botão de adicionar
+button.addEventListener('click', function criarAssunto() {
+    let titulo = inputTitulo.value.trim();
+    if (titulo) {
+        let assunto = { titulo: titulo, descricao: "" };
+        assuntos.push(assunto);
+        console.log(assuntos);
+        inputTitulo.value = '';
 
-// Função para criar um novo assunto
-function criarAssunto() {
-  let titulo = inputTitulo.value.trim();
-  if (titulo) {
-    let assunto = { titulo: titulo, descricao: "" };
-    assuntos.push(assunto);
-    console.log(assuntos);
-    inputTitulo.value = '';
-    atualizarGaleria();
-  } else {
-    console.log('O campo de título está vazio.');
-  }
-}
+        criarElemento();
+    } else {
+        console.log('O campo de título está vazio.');
+    }
+});
 
-// Função para fechar o modal
-function fecharModal() {
-  modal.classList.remove('active');
-  modalOverlay.classList.remove('active');
-}
+// Adiciona um evento de click ao botão de fechar
+closeButton.addEventListener('click', function () {
+    modal.classList.remove('active');
+    modalOverlay.classList.remove('active');
+});
 
-// Função para atualizar a descrição do assunto atual
-function atualizarDescricao() {
-  if (assuntoAtual !== undefined) {
-    assuntos[assuntoAtual].descricao = modalTextarea.value;
-    console.log(`Descrição atualizada para o assunto ${assuntoAtual}: ${modalTextarea.value}`);
-  }
-}
+// Adiciona um evento de click ao overlay do modal
+modalOverlay.addEventListener('click', function () {
+    modal.classList.remove('active');
+    modalOverlay.classList.remove('active');
+});
 
-// Função para atualizar a galeria de assuntos
-function atualizarGaleria() {
-  const galeria = document.querySelector('.galeria-assuntos');
-  galeria.innerHTML = '';
+// Adiciona um evento de input ao textarea do modal para atualizar a descrição
+modalTextarea.addEventListener('input', function () {
+    if (assuntoAtual !== undefined) {
+        assuntos[assuntoAtual].descricao = modalTextarea.value;
+        console.log(`Descrição atualizada para o assunto ${assuntoAtual}: ${modalTextarea.value}`);
+    }
+});
 
-  const ul = document.createElement('ul');
-  galeria.appendChild(ul);
+// Função para criar os elementos da lista
+function criarElemento() {
+    const galeria = document.querySelector('.galeria-assuntos');
+    galeria.innerHTML = '';
 
-  assuntos.forEach((assunto, index) => {
-    const newLi = document.createElement('li');
-    newLi.textContent = assunto.titulo;
+    // Crio a ul
+    const ul = document.createElement('ul');
+    galeria.appendChild(ul);
 
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'X';
-    removeButton.classList.add('remove-button');
-    removeButton.addEventListener('click', function() {
-      removerAssunto(index);
+    // Percorro o array e crio a li
+    assuntos.forEach((assunto, index) => {
+        const newLi = document.createElement('li');
+        newLi.textContent = assunto.titulo;
+        ul.appendChild(newLi);
+
+        // Adiciona um evento de click ao elemento criado
+        newLi.addEventListener('click', function () {
+            assuntoAtual = index;
+            modalTitle.textContent = assunto.titulo;
+            modalTextarea.value = assunto.descricao;
+            modal.classList.add('active');
+            modalOverlay.classList.add('active');
+        });
+
+        //função para apagar o assunto
+        closeButton.addEventListener('click', function () {
+            
+            if(window.confirm("Deseja realmente excluir este assunto?")){
+                assuntos.splice(index, 1);
+                criarElemento();
+                ul.appendChild(newLi);
+            }
+
+        });
     });
-
-    newLi.appendChild(removeButton);
-    newLi.addEventListener('click', function(event) {
-      if (event.target !== removeButton) {
-        abrirModal(assunto, index);
-      }
-    });
-
-    ul.appendChild(newLi);
-  });
-}
-
-// Função para abrir o modal com os dados do assunto
-function abrirModal(assunto, index) {
-  assuntoAtual = index;
-  modalTitle.textContent = assunto.titulo;
-  modalTextarea.value = assunto.descricao;
-  modal.classList.add('active');
-  modalOverlay.classList.add('active');
-}
-
-// Função para remover um assunto
-function removerAssunto(index) {
-  assuntos.splice(index, 1);
-  atualizarGaleria();
 }
