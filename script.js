@@ -8,20 +8,36 @@ const modalOverlay = document.getElementById("modal-overlay");
 let assuntos = [];
 let assuntoAtual;
 
-// Adiciona um evento de click ao botão de adicionar
-button.addEventListener('click', function criarAssunto() {
+
+function criarAssunto(){
     let titulo = inputTitulo.value.trim();
-    if (titulo) {
-        let assunto = { titulo: titulo, descricao: "" };
-        assuntos.push(assunto);
-        console.log(assuntos);
-        inputTitulo.value = '';
+    if(titulo){
+        if(titulo){
+            let assunto =  { titulo: titulo, descricao: ""}
+            assuntos.push(assunto);
+            console.log(assunto);
+            inputTitulo.value = '';
+        }
 
         criarElemento();
-    } else {
+    }else{
         console.log('O campo de título está vazio.');
     }
+}
+
+
+
+// Adiciona um evento de click ao botão de adicionar
+button.addEventListener('click', () =>  {
+    criarAssunto();
+    criarAssunto();
 });
+
+inputTitulo.addEventListener('keypress', () => {
+    if(event.key === 'Enter') {
+        criarAssunto();
+    }
+})
 
 // Adiciona um evento de click ao botão de fechar
 closeButton.addEventListener('click', function () {
@@ -59,7 +75,7 @@ function criarElemento() {
         ul.appendChild(newLi);
 
         // Adiciona um evento de click ao elemento criado
-        newLi.addEventListener('click', function () {
+        newLi.addEventListener('click' , function () {
             assuntoAtual = index;
             modalTitle.textContent = assunto.titulo;
             modalTextarea.value = assunto.descricao;
