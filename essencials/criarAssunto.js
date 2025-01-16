@@ -1,18 +1,18 @@
-const inputTitulo = document.getElementById("input-titulo");
-let assuntos = [];
+import { inputTitulo, assuntos,  } from "../script.js";
 
-export default function criarAssunto(){
-  let titulo = inputTitulo.value.trim();
-  if(titulo){
-      if(titulo){
-          let assunto =  { titulo: titulo, descricao: ""}
-          assuntos.push(assunto);
-          console.log(assunto);
-          inputTitulo.value = '';
-      }
+import { criarElemento  } from "../essencials/criarElemento.js";
 
-      criarElemento();
-  }else{
-      console.log('O campo de título está vazio.');
-  }
+
+
+export function criarAssunto() {
+    let titulo = inputTitulo.value.trim();
+    if (titulo) {
+        let assunto = { titulo: titulo, descricao: "" };
+        assuntos.push(assunto);
+        console.log(assuntos);
+        inputTitulo.value = '';
+        criarElemento();
+    } else {
+        console.log('O campo de título está vazio.');
+    }
 }
