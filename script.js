@@ -1,6 +1,7 @@
 import { criarAssunto } from "./essencials/criarAssunto.js";
+import { criarElemento, configurarBotaoExclusao } from "./essencials/criarElemento.js";
 
-const button = document.getElementById("add"); 
+const button = document.getElementById("add");
 export const inputTitulo = document.getElementById("input-titulo");
 export const modal = document.getElementById("modal");
 export const modalTitle = document.getElementById("modal-title");
@@ -25,11 +26,6 @@ inputTitulo.addEventListener('keypress', (event) => {
     }
 });
 
-closeButton.addEventListener('click', function () {
-    modal.classList.remove('active');
-    modalOverlay.classList.remove('active');
-});
-
 modalOverlay.addEventListener('click', function () {
     modal.classList.remove('active');
     modalOverlay.classList.remove('active');
@@ -42,3 +38,6 @@ modalTextarea.addEventListener('input', function () {
         console.log(`Descrição atualizada para o assunto ${assuntoAtual}: ${modalTextarea.value}`);
     }
 });
+
+// Configurar o listener de exclusão na inicialização
+configurarBotaoExclusao();

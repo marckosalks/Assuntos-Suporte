@@ -1,4 +1,4 @@
-import { modalTitle, modalTextarea, modal, modalOverlay, closeButton, assuntos, setAssuntoAtual } from "../script.js";
+import { modalTitle, modalTextarea, modal, modalOverlay, closeButton, assuntos, setAssuntoAtual, getAssuntoAtual } from "../script.js";
 
 export function criarElemento() {
     const galeria = document.querySelector('.galeria-assuntos');
@@ -12,6 +12,7 @@ export function criarElemento() {
         newLi.textContent = assunto.titulo;
         ul.appendChild(newLi);
 
+        // Listener para abrir o modal
         newLi.addEventListener('click', function () {
             setAssuntoAtual(index); // Usando uma função para atualizar a variável
             modalTitle.textContent = assunto.titulo;
@@ -19,12 +20,18 @@ export function criarElemento() {
             modal.classList.add('active');
             modalOverlay.classList.add('active');
         });
+    });
+}
 
-        closeButton.addEventListener('click', function () {
-            if (window.confirm("Deseja realmente excluir este assunto?")) {
-                assuntos.splice(index, 1);
-                //criarElemento();
-            }
-        });
+// Configurar o listener de exclusão apenas uma vez
+export function configurarBotaoExclusao() {
+    closeButton.addEventListener('click', function () {
+        const assuntoAtual = getAssuntoAtual();
+        if (assuntoAtual !== undefined && window.confirm("Deseja realmente excluir este assunto?")) {
+            assuntos.splice(assuntoAtual, 1);
+            criarElemento();
+            modal.classList.remove('active');
+            modalOverlay.classList.remove('active'); 
+        }
     });
 }
