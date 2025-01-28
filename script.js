@@ -18,19 +18,23 @@ export function getAssuntoAtual() {
     return _assuntoAtual;
 }
 
+//adiciono assunto clicando no botão
 button.addEventListener('click', criarAssunto);
 
+//adiciono assunto apertando enter
 inputTitulo.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         criarAssunto();
     }
 });
 
+//remove elemento
 modalOverlay.addEventListener('click', function () {
     modal.classList.remove('active');
     modalOverlay.classList.remove('active');
 });
 
+//set texto no array descrição
 modalTextarea.addEventListener('input', function () {
     const assuntoAtual = getAssuntoAtual();
     if (assuntoAtual !== undefined) {

@@ -1,4 +1,8 @@
 import { modalTitle, modalTextarea, modal, modalOverlay, closeButton, assuntos, setAssuntoAtual, getAssuntoAtual } from "../script.js";
+ 
+
+//crio os meus elementos visuais 
+// recupero os valores dos inputs e arrays
 
 export function criarElemento() {
     const galeria = document.querySelector('.galeria-assuntos');
@@ -23,7 +27,7 @@ export function criarElemento() {
     });
 }
 
-// Configurar o listener de exclusão apenas uma vez
+// Configuro botão de exclusão e excluo o elemento html
 export function configurarBotaoExclusao() {
     closeButton.addEventListener('click', function () {
         const assuntoAtual = getAssuntoAtual();
