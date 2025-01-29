@@ -61,26 +61,26 @@ input::placeholder {
 
 .galeria-assuntos ul {
   display: grid;
-  grid-template-columns: 180px 180px 180px 180px;
+  grid-template-columns: repeat(4, 180px);
   gap: 2rem;
 }
 
 ul {
   list-style: none;
+}
 
-  li {
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    list-style-type: none;
-    height: 140px;
-    width: 170px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 40px;
-  }
+ul li {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  list-style-type: none;
+  height: 140px;
+  width: 170px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 40px;
 }
 
 /* Estilo do modal */
@@ -160,11 +160,59 @@ textarea::placeholder {
   background-color: rgba(0, 0, 0, 0.836);
   pointer-events: none;
   z-index: 999;
-  transition: opacity 0.3s ease; /* Adiciona uma transição suave */
+  transition: opacity 0.3s ease;
 }
 
 .modal-overlay.active {
   display: block;
   opacity: 1;
-  pointer-events: auto; /* Permite interação quando ativo */
+  pointer-events: auto;
+}
+
+/* Media Queries para responsividade */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    padding: 1.5rem 0;
+  }
+
+  .caixa-input {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  .caixa-input button {
+    width: 80%;
+  }
+
+  .galeria-assuntos ul {
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas menores */
+    gap: 1rem;
+  }
+
+  ul li {
+    width: 120px; /* Ocupa 100% da largura da coluna */
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .galeria-assuntos ul {
+    grid-template-columns: repeat(2, 1fr); /* Mantém duas colunas em celulares */
+  }
+
+  ul li {
+    width: 120px; /* Ocupa 100% da largura da coluna */
+    height: 120px;
+  }
 }
