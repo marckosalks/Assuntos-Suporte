@@ -169,6 +169,57 @@ textarea::placeholder {
   pointer-events: auto;
 }
 
+/* Estilos para o modo escuro */
+body.dark-mode {
+  background-color: #181818;
+  color: #f1f1f1;
+}
+
+body.dark-mode h1 {
+  color: #f1f1f1;
+}
+
+body.dark-mode .caixa-input input {
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+body.dark-mode  button {
+  color: #fff;
+}
+
+body.dark-mode .galeria-assuntos li {
+  background-color: #333;
+  color: #f1f1f1;
+}
+
+body.dark-mode .modal {
+  background-color: #222;
+  color: #f1f1f1;
+}
+
+body.dark-mode textarea {
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+body.dark-mode .modal-header .close-button {
+  color: #f1f1f1;
+}
+
+/* Para o botão de alternância */
+#dark-mode-toggle {
+  position: absolute;
+  top: 47px;
+  right: 25px;
+  font-size: 5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 /* Media Queries para responsividade */
 
 @media (max-width: 768px) {
