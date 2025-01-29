@@ -5,7 +5,7 @@ const darkModeToggle = document.getElementById('dark-mode-toggle');
 if (localStorage.getItem('dark-mode') === 'enabled') {
   document.body.classList.add('dark-mode');
 } else {
-  darkModeToggle.textContent = 'Modo Escuro';  // Caso não tenha preferência salva
+  darkModeToggle.textContent = '*';  // Caso não tenha preferência salva
 }
 
 // Adiciona um evento de clique ao botão
