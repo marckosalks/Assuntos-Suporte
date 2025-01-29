@@ -1,41 +1,45 @@
-import { modalTitle, modalTextarea, modal, modalOverlay, closeButton, assuntos, setAssuntoAtual, getAssuntoAtual } from "../script.js";
- 
-
-//crio os meus elementos visuais 
-// recupero os valores dos inputs e arrays
+import { modalTitle, modalTextarea, modal, modalOverlay, deleteButton, assuntos, setAssuntoAtual, getAssuntoAtual, db } from "../script.js";
+import { doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 export function criarElemento() {
-    const galeria = document.querySelector('.galeria-assuntos');
-    galeria.innerHTML = '';
+    const galeria = document.querySelector(".galeria-assuntos");
+    galeria.innerHTML = "";
 
-    const ul = document.createElement('ul');
+    const ul = document.createElement("ul");
     galeria.appendChild(ul);
 
     assuntos.forEach((assunto, index) => {
-        const newLi = document.createElement('li');
+        const newLi = document.createElement("li");
         newLi.textContent = assunto.titulo;
         ul.appendChild(newLi);
 
-        // Listener para abrir o modal
-        newLi.addEventListener('click', function () {
-            setAssuntoAtual(index); // Usando uma função para atualizar a variável
+        newLi.addEventListener("click", () => {
+            setAssuntoAtual(index);
             modalTitle.textContent = assunto.titulo;
             modalTextarea.value = assunto.descricao;
-            modal.classList.add('active');
-            modalOverlay.classList.add('active');
+            modal.classList.add("active");
+            modalOverlay.classList.add("active");
         });
     });
 }
 
-// Configuro botão de exclusão e excluo o elemento html
 export function configurarBotaoExclusao() {
-    closeButton.addEventListener('click', function () {
+    deleteButton.addEventListener("click", async () => {
         const assuntoAtual = getAssuntoAtual();
+
         if (assuntoAtual !== undefined && window.confirm("Deseja realmente excluir este assunto?")) {
-            assuntos.splice(assuntoAtual, 1);
-            criarElemento();
-            modal.classList.remove('active');
-            modalOverlay.classList.remove('active'); 
+            const assunto = assuntos[assuntoAtual];
+
+            try {
+                await deleteDoc(doc(db, "assuntos", assunto.id)); // Exclui no Firestore
+                assuntos.splice(assuntoAtual, 1); // Atualiza localmente
+                criarElemento(); // Atualiza a lista de elementos
+            } catch (error) {
+                console.error("Erro ao excluir o assunto do Firestore: ", error);
+            }
+
+            modal.classList.remove("active");
+            modalOverlay.classList.remove("active");
         }
     });
 }
